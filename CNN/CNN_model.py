@@ -47,7 +47,7 @@ def show_image(train_images,
     train_labels = to_categorical(train_labels, len(class_name))
 
 def create_model():
-    INPUT_SHAPE = (64, 64, 3)
+    INPUT_SHAPE = (64, 64, 4)
     FILTER1_SIZE = 32
     FILTER2_SIZE = 64
     FILTER_SHAPE = (3, 3)
@@ -69,7 +69,7 @@ def create_model():
 def train_model(model,train_data,train_label):
     BATCH_SIZE = 4
     EPOCHS = 12
-    METRICS = metrics=['accuracy',
+    METRICS =['accuracy',
                         Precision(name='precision'),
                         Recall(name='recall')]
     
@@ -87,8 +87,8 @@ def train_model(model,train_data,train_label):
 if  __name__ == "__main__":
     folder = 'D:/Python/zero_to_hero_-scikit-learn-/CNN/Dataset'
     train_data, train_label = load_images_from_folder(folder)
-    show_image(train_data, class_name, train_label)
     train_labels = to_categorical(train_label, len(class_name))  # Thay đổi dòng này
     train_data = np.asarray(train_data)
+    print(train_data.shape)
     model = create_model()
     train_model(model, train_data, train_labels)
